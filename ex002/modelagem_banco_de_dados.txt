@@ -1,0 +1,25 @@
+table Clientes {
+  id uuid [primary key]
+  nome varchar [not null]
+  cpf varchar [not null, unique]
+  telefone varchar [not null]
+  email varchar [not null]
+}
+
+
+table Produto {
+  id uuid [primary key]
+  categoria varchar [not null]
+  nome varchar [not null]
+  quantidade_estoque int [not null]
+  valor decimal [not null]
+}
+
+table Vendas {
+  id uuid [primary key]
+  cliente_id uuid [ref: > Clientes.id]
+  produto_id uuid [ref: > Produto.id]
+  quantidade int [not null]
+  forma_pagamento varchar [not null]
+  data datetime [not null]
+}
